@@ -126,7 +126,7 @@ def add_teacher(request):
         tname = request.POST.get("tname")
         class_ids = request.POST.getlist("cid")
         print(tname, class_ids)
-
+        
         teacher_obj = models.Teacher.objects.create(tname=tname)
         teacher_obj.cid.add(*class_ids)
         return redirect(reverse("teacher_list"))
@@ -144,7 +144,7 @@ def edit_teacher(request, tid):
         class_id = request.POST.getlist("cid")
 
         # 更新老师信息
-        teacher_obj.tname=tname
+        teacher_obj.tname = tname
         teacher_obj.cid.set(class_id)
         teacher_obj.save()
         return redirect(reverse("teacher_list"))
