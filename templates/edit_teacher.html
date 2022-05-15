@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>编辑教师</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/my_css.css">
+</head>
+<body>
+<div class="box" style="height: 260px">
+    <form class="form-group" action="{% url "edit_teacher" teacher_obj.id %}" method="post">
+        {% csrf_token %} <!--跨站点伪造防护-->
+        <p><input type="text" value="{{ teacher_obj.id }}" name="id" hidden></p>
+        <p>教师名称：
+            <input class="ipt" type="text" name="tname" value="{{ teacher_obj.tname }}">
+        </p>
+        <p>授课班级：
+            <select name="cid" multiple>
+                {% for class in class_list %}
+                    {% if class in teacher_obj.cid.all %}
+                        <option selected value="{{ class.id }}">{{ class.cname }}</option>
+                    {% else %}
+                        <option  value="{{ class.id }}">{{ class.cname }}</option>
+                    {% endif %}
+                {% endfor %}
+
+            </select>
+        </p>
+        <p class="sub">
+            <input class="btn btn-default" type="submit" value="提交">
+            <a class="btn btn-default" href="{% url "teacher_list" %}">取消</a>
+        </p>
+    </form>
+</div>
+
+</body>
+</html>

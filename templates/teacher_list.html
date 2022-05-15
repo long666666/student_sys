@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>教师信息</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/show.css">
+</head>
+<h1 class="tit">水浒学院教务管理系统</h1>
+<body>
+<div class="box">
+
+    <a class="btn btn-default" href="{% url "add_teacher" %}">添加教师</a>
+    <a class="btn btn-default" href="{% url "school" %}">返回主页</a>
+    <table class="table table-bordered" border="1">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>姓名</th>
+            <th>班级</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for teacher in teacher_list %}
+            <tr>
+                <td>{{ teacher.id }}</td>
+                <td>{{ teacher.tname }}</td>
+                <td>
+                    {% for class in teacher.cid.all %}
+                        {% if forloop.last %}
+                            {{ class.cname }}
+                        {% else %}
+                            {{ class.cname }}、
+                        {% endif %}
+                    {% endfor %}
+
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-pencil" style="font-size: 12px; color: #53ae16; "
+                       href="{% url "edit_teacher" teacher.id %}">编辑</a>
+                    <a class="glyphicon glyphicon-remove" style="font-size: 12px; color: #ae1115;"
+                       href="{% url "delete_teacher" teacher.id %}">删除</a>
+
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

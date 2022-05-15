@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>添加教师</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/my_css.css">
+</head>
+<body>
+<div class="box" style="height: 260px">
+    <form class="form-group" action="{% url "add_teacher" %}" method="post">
+        {% csrf_token %}
+        <p>教师姓名：<input class="ipt" type="text" name="tname"></p>
+        <p>所带班级：
+            <select name="cid" multiple>
+                {% for class in class_list %}
+                    <option value="{{ class.id }}">{{ class.cname }}</option>
+                {% endfor %}
+
+            </select>
+        </p>
+        <p class="sub">
+            <input class="btn btn-default" type="submit" value="提交">
+            <a class="btn btn-default" href="{% url "teacher_list" %}">取消</a>
+        </p>
+
+    </form>
+</div>
+
+</body>
+</html>

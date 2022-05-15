@@ -1,0 +1,28 @@
+
+body {
+    height: 100vh;
+    background: linear-gradient(200deg, #4ff4b0, #5e43e3);
+}
+
+.box {
+    margin-top: 40px;
+
+    background-color: #52d3ff;
+}
+
+.btn-default {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: #55853c;
+}
+
+.table-bordered {
+    margin-top: 10px;
+}
+
+.tit {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+

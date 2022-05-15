@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>编辑班级</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/my_css.css">
+</head>
+<body>
+<div class="box">
+    <form class="form-group" action="{% url "edit_class" class_info.id %}" method="post">
+        {% csrf_token %} <!--跨站点伪造防护-->
+        <p><input  type="text" value="{{ class_info.id }}" name="id" hidden></p>
+        <p>班级名称：
+            <input class="ipt" type="text" name="cname" value="{{ class_info.cname }}">
+        </p>
+        <p>开班日期：<input class="ipt" type="date" name="first_day" value="{{ class_info.first_day|date:"Y-m-d" }}"></p>
+        <p class="sub">
+            <input class="btn btn-default" type="submit" value="提交">
+            <a class="btn btn-default" href="{% url "class_list" %}">取消</a>
+        </p>
+    </form>
+</div>
+
+</body>
+</html>

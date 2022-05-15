@@ -1,0 +1,47 @@
+* {
+    /*初始化,取消页面内外边距*/
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*弹性布局*/
+    display: flex;
+    /*水平居中*/
+    justify-content: center;
+    /*垂直居中*/
+    align-items: center;
+    /*窗口高度100%*/
+    height: 100vh;
+    background: linear-gradient(to right, #e3c798, #ff21c0, #60f0f0, #f69bfe);
+}
+
+.school {
+    /*弹性布局*/
+    display: block;
+
+    /*垂直居中*/
+    align-items: center;
+    /*水平居中*/
+    justify-content: center;
+
+    width: 400px;
+    height: 400px;
+    text-align: center;
+
+}
+
+.bt{
+    width: 180px;
+    height: 45px;
+    font-size: 20px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(to right, #9890e3, #ff21c0, #4fc6f0, #d975fe);
+     /*设置模糊度*/
+
+}

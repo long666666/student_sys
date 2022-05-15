@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>编辑学生</title>
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/my_css.css">
+</head>
+<body>
+<div class="box" style="height: 280px">
+    <form class="form-group" action="{% url "edit_student" student_info.id %}" method="post">
+        {% csrf_token %} <!--跨站点伪造防护-->
+        <p><input type="text" value="{{ student_info.id }}" name="id" hidden></p>
+        <p>姓名：<input class="ipt" type="text" name="sname" value="{{ student_info.sname }}"></p>
+        {#    <p>班级：<input type="date" name="first_day" value="{{ class_info.cid }}"></p>#}
+        <p>班级：
+            <select name="cid" style=" height: 25px; width: 90px; background-color: #53c9c6; font-size: 12px">
+                {% for class in class_list %}
+                    {% if student_info.cid_id == class.id %}
+                        <option selected value="{{ class.id }}">{{ class.cname }}</option>
+                    {% else %}
+                        <option value="{{ class.id }}">{{ class.cname }}</option>
+                    {% endif %}
+                    c
+                {% endfor %}
+
+            </select></p>
+        <p>身高：<input class="ipt" type="text" value="{{ detail.height }}" name="height"></p>
+        <p>绰号：<input class="ipt" type="text" value="{{ detail.memo }}" name="memo"></p>
+        <p class="sub">
+            <input class="btn btn-default" type="submit" value="提交">
+            <a class="btn btn-default" href="{% url "student_list" %}">取消</a>
+        </p>
+
+    </form>
+</div>
+
+</body>
+</html>
